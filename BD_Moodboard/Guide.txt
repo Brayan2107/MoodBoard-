@@ -1,0 +1,11 @@
+Guide
+
+*installation MongoDB Shell, package msi
+https://www.mongodb.com/try/download/shell
+
+*installation MongoDB Community Server, package msi
+https://www.mongodb.com/try/download/community
+
+*Création BD_Moodboard et colletions "utilisateurs" et "humeurs"
+//Dans le terminal lancez le script aevec cette ligne de commande :
+mongosh < BD_Moodboard.js
