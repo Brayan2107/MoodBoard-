@@ -31,45 +31,27 @@ Offrir une plateforme intuitive pour :
 
 | Membre          | Rôle                                     |
 |-----------------|------------------------------------------|
-| Alice           | Développement back-end & sécurité        |
-| Bob             | Développement front-end & UX             |
-| Charlie         | Base de données & gestion des modèles    |
-
+| Brayan          | Développement                  |
+| Eliott          | Développement                  |
+| Hugo            | Développement                  |
+| Juan            | Développement et Scrum Master  |
 ---
 
 ## 🧱 Stack technique
 
 - **Node.js** avec **Express.js** (API)
 - **MongoDB** avec **Mongoose** (base de données)
-- **JWT** & **bcrypt** (authentification sécurisée)
-- **Frontend** : HTML/CSS/JS ou React (à définir)
+- **Frontend** : HTML/CSS/JS 
 - **GitHub + Jira** pour le suivi de projet
 
 ---
 
-
-
-## 📌 Consignes de développement
-
-- Une **branche par fonctionnalité** (`feature/login`, `feature/mood-history`, etc.)
-- Les noms de commits doivent inclure une référence Jira (ex: `MOOD-12 - Ajout du modèle User`)
-- Toute **Pull Request** doit être relue et validée par un autre membre
-- Utiliser `.env` pour stocker les variables sensibles
-- Respecter la structure du projet (`src/`, `models/`, `routes/`, etc.)
-
----
-
-## 📎 Liens utiles
+## 📎 Liens utiles Pour la liste des tâches
 
 - 📌 [Tableau Jira – MoodBoard+](https://eliottmaillard2509.atlassian.net/jira/software/projects/SCRUM/list).
 
 ---
 
-## 💡 Remarques
-
-- Les emojis doivent être cliquables et accessibles
-- Le design doit être épuré, clair et mobile-friendly
----
 
 ## 📝 Marche à suivre pour utiliser ton projet
 
@@ -154,9 +136,6 @@ npm install
 # 4. Lancer le serveur
 npm start
 ```
-
-> ⚠️ Assurez-vous d'avoir MongoDB installé localement ou accessible à distance.
-
 ---
 
 ## 📝 Ce que la personne doit installer
