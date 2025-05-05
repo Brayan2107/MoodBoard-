@@ -63,7 +63,7 @@ Avant de commencer, la personne doit avoir :
 
 Si le projet est sur GitHub :
 ```bash
-git clone <url-du-repo>
+git clone <https://github.com/Brayan2107/MoodBoard-.git>
 ```
 
 Sinon :  
@@ -101,13 +101,6 @@ cd ..
 ```bash
 npm start
 ```
-
-### ✅ 7. Accéder au projet dans le navigateur
-
-- Ouvrir : [http://localhost:3000](http://localhost:3000) → Page d’accueil (`index.html`)
-- Tester une route backend : [http://localhost:3000/hello](http://localhost:3000/hello)
-
----
 
 ## 🔥 Résumé des commandes à exécuter
 
