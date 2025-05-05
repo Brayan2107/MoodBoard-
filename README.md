@@ -29,8 +29,8 @@ Offrir une plateforme intuitive pour :
 
 ## 👥 Rôles de l’équipe
 
-| Membre          | Rôle                                     |
-|-----------------|------------------------------------------|
+| Membre          | Rôle                           |
+|-----------------|--------------------------------|
 | Brayan          | Développement                  |
 | Eliott          | Développement                  |
 | Hugo            | Développement                  |
