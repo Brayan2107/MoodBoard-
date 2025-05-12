@@ -1,10 +1,26 @@
 *{
     box-sizing: border-box;
 }
-body{
-    font-family:"Lato", sans-serif;
-}
-.bg{
-    width: 15%;
-    background-color: rgb(190, 190, 190);
-}
+body {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .moodboard-container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        .emoji-label {
+            font-size: 1.5rem;
+        }
+        h1 {
+            font-weight: bold;
+            color: #343a40;
+        }
