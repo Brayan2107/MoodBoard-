@@ -4,5 +4,7 @@ const mainController = require('../controllers/mainController');
 
 router.get('/hello', mainController.sayHello);
 
+router.get('/', mainController.sayHello);
+
 
 module.exports = router;
