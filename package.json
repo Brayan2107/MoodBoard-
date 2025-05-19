@@ -1,7 +1,7 @@
 {
   "name": "moodboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dans un environnement de travail, il est essentiel de rester à l’écoute de l’équipe.  \r **MoodBoard+** est une application qui permet à chaque membre d’exprimer son humeur du jour — stressé, détendu, en colère, joyeux — de manière simple, rapide et éventuellement anonyme.",
   "main": "index.js",
   "devDependencies": {
     "concurrently": "^9.1.2"
@@ -13,8 +13,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brayan2107/MoodBoard-.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Brayan2107/MoodBoard-/issues"
+  },
+  "homepage": "https://github.com/Brayan2107/MoodBoard-#readme"
 }

@@ -1,31 +1,38 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;  // Utiliser la variable d'environnement ou 3000 par défaut
 
+// Charger les variables d'environnement
+const dotenv = require('dotenv');
+dotenv.config();
+
+// Configurer le répertoire statique pour le frontend
 app.use(express.static(path.join(__dirname, '../frontend')));
 
+// Importer les routes
 const mainRoutes = require('./routes/main');
+const utilisateursRoutes = require('./routes/utilisateurs');
+
+// Définir les routes
 app.use('/', mainRoutes);
-
-app.listen(port, () => {
-    console.log(`Serveur démarré sur http://localhost:${port}`);
-});
-
-const connectDB = require('./db');  // Importer la fonction de connexion à MongoDB
+app.use('/api/utilisateurs', utilisateursRoutes);
 
 // Middleware pour accepter les requêtes JSON
 app.use(express.json());
 
-// Appeler la fonction pour se connecter à MongoDB
-connectDB();
-
-// Définir une route pour tester la connexion
-app.get('/', (req, res) => {
-  res.send('Hello, MongoDB connected!');
+// Connexion MongoDB
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('Connecté à MongoDB');
+}).catch(err => {
+  console.error('Erreur MongoDB :', err);
 });
 
-// Démarrer le serveur Express
-app.listen(5000, () => {
-  console.log('Server started on port 5000');
+// Démarrer le serveur
+app.listen(port, () => {
+  console.log(`Serveur démarré sur http://localhost:${port}`);
 });
