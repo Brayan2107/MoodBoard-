@@ -34,5 +34,5 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Démarrer le serveur
 app.listen(port, () => {
-  console.log(`Serveur démarré sur http://localhost:${port}`);
+  console.log(`Serveur démarré sur http://localhost:3000`);
 });

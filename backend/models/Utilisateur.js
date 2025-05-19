@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs'); // Pour le hashage du mot de passe
 
 // Définir le schéma de l'utilisateur
 const utilisateurSchema = new mongoose.Schema({
