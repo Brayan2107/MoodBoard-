@@ -5,7 +5,4 @@ const mailController = require('../controllers/mailController');
 
 router.get('/hello', mainController.sayHello);
 
-router.post('/send-mail', mailController.sendMail)
-router.post('/rappelle-mail', mailController.sendRappelleEmail)
-
 module.exports = router;
