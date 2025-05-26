@@ -12,7 +12,7 @@ router.post('/rappelle-mail', mailController.sendRappelleEmail)
 router.get('/humeur', humeurController.getAllUserHummeur)
 
 
-router.post('/register', userController.register);
-router.post('/login', userController.login);
+router.post('/api/register', userController.register);
+router.post('/api/login', userController.login);
 
 module.exports = router;
