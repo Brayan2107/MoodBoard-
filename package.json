@@ -13,12 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "express": "^5.1.0",
-    "mongodb": "^6.16.0",
-    "mongoose": "^8.14.2"
-=======
     "mongoose": "^8.15.0"
->>>>>>> hugo
   }
 }
