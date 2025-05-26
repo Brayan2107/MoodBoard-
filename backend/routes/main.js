@@ -14,22 +14,21 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
+const parametreController = require('../controllers/parametreController');
 router.get('/hello', mainController.sayHello);
 
 router.post('/send-mail', mailController.sendMail)
 router.post('/rappelle-mail', mailController.sendRappelleEmail)
 
-router.get('/humeur', ensureAuthenticated, humeurController.getAllUserHummeur)
+router.get('/humeur', humeurController.getAllUserHummeur)
+router.post('/post-humeur', humeurController.postHumeur)
+
 
 router.post('/api/register', userController.register);
 router.post('/api/login', userController.login);
 
-router.get('/index.html', ensureAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
-});
-
-router.get('/historiqueHumeur.html', ensureAuthenticated, (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/historiqueHumeur.html'));
-});
+router.get('/api/controller/get-user/:id',  parametreController.getUser)
+router.put('/api/controller/put-user/:id', parametreController.updateUser )
+router.put('/api/controller/change-password/:id', parametreController.changePassword);
 
 module.exports = router;
