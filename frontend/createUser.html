@@ -1,0 +1,34 @@
+<!-- frontend/crateUser.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/custom.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/crateUser.js" defer></script>
+    <title>Moodboard+</title>
+</head>
+<body>
+    <div class="moodboard-container_user">
+        <h1 class="mb-4 text-center">Créer un utilisateur</h1>
+        <form>
+            <div class="mb-3">
+                <label for="inputUser1" class="form-label">Nom d'utilisateur</label>
+                <input type="text" autocomplete="off" class="form-control" id="inputUser1">
+            </div>
+
+            <div class="mb-3">
+                <label for="inputUser2" class="form-label">Adresse mail</label>
+                <input type="email" autocomplete="off" class="form-control" id="inputUser2">
+            </div>
+
+            <div class="mb-5">
+                <label for="inputPassword1" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="inputPassword1">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Créer</button>
+        </form>
+    </div>
+</body>
+</html>

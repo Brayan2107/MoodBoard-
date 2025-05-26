@@ -17,6 +17,16 @@ body {
     max-width: 500px;
     width: 100%;
 }
+
+.moodboard-container_user {
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+}
 .emoji-label {
     font-size: 1.2rem;
 }
