@@ -31,6 +31,7 @@ app.use((req, res, next) => {
   }
 });
 
+
 // Servir les fichiers statiques APRES la vérification
 app.use('/css', express.static(path.join(__dirname, '../frontend/css')));
 app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
@@ -44,7 +45,8 @@ app.listen(port, () => {
 });
 
 // Redirection par défaut vers login si rien d'autre n'est attrapé
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.redirect('/login.html');
 });
+
 
