@@ -135,3 +135,9 @@ npm start
 
 - Node.js (inclut npm)  
 *C’est tout ! Le reste (express, concurrently...) sera installé automatiquement avec `npm install`.*
+
+npm install            # pour le package.json racine
+cd backend
+npm install            # pour le backend (express)
+cd ..
+npm start
