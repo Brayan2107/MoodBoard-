@@ -39,7 +39,7 @@ exports.getAllUserHummeur = (req, res) => {
       };
 res.send(mood);
 };
-const Humeur = require('../models/Humeur');
+const Humeur = require('../models/humeur');
 exports.postHumeur = async (req, res) => {
   console.log("Données reçues dans la requête :", req.body);
   const { humeur } = req.body;
