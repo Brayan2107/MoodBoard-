@@ -31,7 +31,6 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Cherche l'utilisateur par email
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -44,8 +43,21 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Email ou mot de passe incorrect' });
     }
 
+    req.session.userId = user._id; // Création session
+
     res.json({ message: 'Connexion réussie', user });
   } catch (err) {
     res.status(500).json({ message: 'Erreur serveur', error: err.message });
+  }
+};
+
+// Vérifier session utilisateur
+exports.getCurrentUser = (req, res) => {
+  if (req.session.userId) {
+    User.findById(req.session.userId)
+      .then(user => res.json({ username: user.name }))
+      .catch(err => res.status(500).json({ message: 'Erreur serveur', error: err.message }));
+  } else {
+    res.status(401).json({ message: 'Non authentifié' });
   }
 };

@@ -61,8 +61,9 @@ exports.sendMail = async (req, res) => {
 exports.sendRappelleEmail = async (req, res) => {
     const utilisateurs = [
         { nom: 'Juan', email: 'guzmanfjd@s2.rpn.ch' },
-        { nom: 'Brayan', email: 'Brayan.deAraujoMota@rpn.ch' }
-    ];
+        { nom: 'Brayan', email: 'Brayan.deAraujoMota@rpn.ch' },
+        { nom: 'Eliott', email: 'Eliott.Maillard@rpn.ch' }
+    ];    
 
     const objet = "📝 Petit rappel humeur du jour";
     const message = `C’est l’heure de faire un petit point sur ton humeur ! 😊

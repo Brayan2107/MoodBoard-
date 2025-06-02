@@ -48,7 +48,26 @@
 
     </form>    
   </div>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      const response = await fetch('/api/current-user', {
+        credentials: 'include'
+      });
 
+      const data = await response.json();
+
+      if (response.ok) {
+        document.getElementById('username').textContent = data.username;
+      } else {
+        window.location.href = 'index.html';
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      window.location.href = 'index.html';
+    }
+  });
+  </script>
   <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
     <div id="toastStatus" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="d-flex">
