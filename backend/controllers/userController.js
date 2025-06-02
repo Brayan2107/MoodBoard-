@@ -43,7 +43,10 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Email ou mot de passe incorrect' });
     }
 
-    req.session.userId = user._id; // Création session
+    req.session.userId = user._id;
+    req.session.userEmail = user.email;
+    req.session.userName = user.name;
+ // Création session
 
     res.json({ message: 'Connexion réussie', user });
   } catch (err) {

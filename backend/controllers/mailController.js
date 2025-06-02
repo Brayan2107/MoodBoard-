@@ -35,6 +35,27 @@ async function envoyerMailSimple(name, email, message, objet) {
     }
 }
 
+exports.sendMailToConnectedUser = async (req, res) => {
+    try {
+        const userEmail = req.session.userEmail;
+        const userName = req.session.userName || 'Utilisateur';
+
+        if (!isValidEmail(userEmail)) return res.status(400).json({ message: 'Email invalide' });
+
+        const objet = "Humeur enregistré 🧠";
+        const message = "Merci d'avoir partagé ton humeur !";
+
+        const success = await envoyerMailSimple(userName, userEmail, message, objet);
+        if (success) {
+            return res.status(200).json({ message: '✅ E-mail envoyé avec succès' });
+        } else {
+            return res.status(500).json({ message: "❌ Échec de l'envoi de l'e-mail" });
+        }
+    } catch (error) {
+        console.error('❌ Erreur serveur :', error);
+        return res.status(500).json({ message: "Erreur serveur" });
+    }
+};
 
 exports.sendMail = async (req, res) => {
     try {

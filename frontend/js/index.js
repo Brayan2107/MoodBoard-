@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => {
             if (response.ok) {
                 alert("Merci de participer, votre humeur a été envoyée.");
+                envoyerMailHumeurUtilisateur();
             } else {
                 alert("Erreur lors de l'enregistrement de l'humeur.");
             }

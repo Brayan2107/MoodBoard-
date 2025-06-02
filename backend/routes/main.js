@@ -7,6 +7,7 @@ const mailController = require('../controllers/mailController');
 const humeurController = require('../controllers/humeurController');
 const userController = require('../controllers/userController');
 const parametreController = require('../controllers/parametreController');
+const User = require('../models/user');
 
 function ensureAuthenticated(req, res, next) {
   if (req.session.userId) {
@@ -20,6 +21,7 @@ router.get('/hello', mainController.sayHello);
 
 router.post('/send-mail', mailController.sendMail);
 router.post('/rappelle-mail', mailController.sendRappelleEmail);
+router.post('/mail-humeur-user', ensureAuthenticated, mailController.sendMailToConnectedUser);
 
 router.get('/humeur', ensureAuthenticated, humeurController.getAllUserHummeur);
 router.post('/post-humeur', humeurController.postHumeur);

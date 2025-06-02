@@ -20,6 +20,19 @@ app.use(session({
 
 app.use(express.json());
 
+
+// Servir les fichiers statiques APRES la vérification
+app.use('/css', express.static(path.join(__dirname, '../frontend/css')));
+app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
+
+
+// Routes API
+app.use('/', mainRoutes);
+
+app.listen(port, () => {
+  console.log(`Serveur démarré sur http://localhost:${port}`);
+});
+
 // Middleware pour vérifier l'authentification avant chaque accès aux pages HTML
 app.use((req, res, next) => {
   const publicPages = ['/login.html', '/createUser.html', '/api/login', '/api/register', '/css/', '/js/', '/favicon.ico'];
@@ -31,38 +44,3 @@ app.use((req, res, next) => {
     res.redirect('/login.html');
   }
 });
-
-
-// Servir les fichiers statiques APRES la vérification
-app.use('/css', express.static(path.join(__dirname, '../frontend/css')));
-app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
-app.use(express.static(path.join(__dirname, '../frontend')));
-
-
-// Routes API
-app.use('/', mainRoutes);
-
-app.listen(port, () => {
-  console.log(`Serveur démarré sur http://localhost:${port}`);
-});
-
-// Redirection par défaut vers login si rien d'autre n'est attrapé
-app.use((req, res, next) => {
-  const isPublicPage =
-    req.path === '/login.html' ||
-    req.path === '/createUser.html' ||
-    req.path.startsWith('/api/login') ||
-    req.path.startsWith('/api/register') ||
-    req.path.startsWith('/css/') ||
-    req.path.startsWith('/js/') ||
-    req.path === '/favicon.ico';
-
-  if (isPublicPage || req.session.userId) {
-    next();
-  } else {
-    res.redirect('/login.html');
-  }
-});
-
-
-
