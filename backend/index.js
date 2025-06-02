@@ -35,6 +35,7 @@ app.use((req, res, next) => {
 // Servir les fichiers statiques APRES la vérification
 app.use('/css', express.static(path.join(__dirname, '../frontend/css')));
 app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 
 // Routes API
@@ -45,8 +46,22 @@ app.listen(port, () => {
 });
 
 // Redirection par défaut vers login si rien d'autre n'est attrapé
-app.use((req, res) => {
-  res.redirect('/login.html');
+app.use((req, res, next) => {
+  const isPublicPage =
+    req.path === '/login.html' ||
+    req.path === '/createUser.html' ||
+    req.path.startsWith('/api/login') ||
+    req.path.startsWith('/api/register') ||
+    req.path.startsWith('/css/') ||
+    req.path.startsWith('/js/') ||
+    req.path === '/favicon.ico';
+
+  if (isPublicPage || req.session.userId) {
+    next();
+  } else {
+    res.redirect('/login.html');
+  }
 });
+
 
 
