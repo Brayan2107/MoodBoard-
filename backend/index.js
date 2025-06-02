@@ -4,6 +4,7 @@ const session = require('express-session');
 const connectDB = require('./db');
 const mainRoutes = require('./routes/main');
 
+
 connectDB();
 
 const app = express();
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 // Servir les fichiers statiques APRES la vérification
 app.use('/css', express.static(path.join(__dirname, '../frontend/css')));
 app.use('/js', express.static(path.join(__dirname, '../frontend/js')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 
 // Routes API
@@ -44,7 +46,7 @@ app.listen(port, () => {
 });
 
 // Redirection par défaut vers login si rien d'autre n'est attrapé
-app.get('*', (req, res) => {
+app.get( (req, res) => {
   res.redirect('/login.html');
 });
 
