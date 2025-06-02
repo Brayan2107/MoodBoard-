@@ -17,6 +17,8 @@ document.querySelector('form').addEventListener('submit', async (e) => {
     if (response.ok) {
       alert('Connexion réussie !');
       window.location.href = 'index.html';
+      sessionStorage.setItem('userId', data.user._id);
+      sessionStorage.setItem('username', data.user.name);
     } else {
       alert('Erreur : ' + data.message);
     }

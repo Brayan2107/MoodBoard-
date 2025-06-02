@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   const isPublic = publicPages.some(page => req.path.startsWith(page));
 
   if (isPublic || req.session.userId) {
-    next();
+   next();
   } else {
     res.redirect('/login.html');
   }
