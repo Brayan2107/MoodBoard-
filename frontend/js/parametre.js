@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const userId = '68342fe4e4f16a5f3d9c4a91';
+    const userId = sessionStorage.getItem('userId');
   
     // 1. Récupérer les données utilisateur
     async function loadUser() {
@@ -65,6 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!res.ok) throw new Error(result.message);
   
         alert('Mot de passe mis à jour avec succès');
+        
       } catch (err) {
         alert('Erreur : ' + err.message);
       }

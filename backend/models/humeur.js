@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const humeurSchema = new mongoose.Schema({
-  humeur: {
-    type: String,
+  user: {
+    type: String, 
     required: true
   },
   date: {
-    type: Date,
-    default: Date.now
+    type: String, 
+    required: true
+  },
+  mood: {
+    type: Number,
+    required: true
   }
 });
 
