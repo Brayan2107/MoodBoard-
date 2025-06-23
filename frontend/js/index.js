@@ -1,31 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("humeursForm");
-    
+
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-        
-        const humeur = document.getElementById("userHumeur").value;
-        if (!humeur || humeur == "") {
-        alert("Merci de sélectionner une humeur.");
-        return;
+
+        const mood = parseInt(document.getElementById("userHumeur").value);
+        const user = sessionStorage.getItem('username'); // récupéré depuis sessionStorage
+        const date = new Date().toISOString().split('T')[0]; // format AAAA-MM-JJ
+        console.log(user);
+        console.log(mood);
+        if (!mood || !user) {
+            alert("Merci de sélectionner une humeur et d’être connecté.");
+            return;
         }
-        
+
         fetch("/post-humeur", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ humeur }),
+            body: JSON.stringify({ user, date, mood })
         })
-        .then(response => {
-            if (response.ok) {
-                alert("Merci de participer, votre humeur a été envoyée.");
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert("✅ " + data.message);
             } else {
-                alert("Erreur lors de l'enregistrement de l'humeur.");
+                alert("⚠️ Une erreur est survenue.");
             }
         })
         .catch(error => {
             console.error("Erreur lors de l'envoi :", error);
+            alert("❌ Erreur lors de l’envoi de l’humeur.");
         });
     });
 });

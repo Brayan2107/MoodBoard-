@@ -2,11 +2,11 @@ const ctx = document.getElementById('moodChart').getContext('2d');
 let chart;
 let currentUser = 'all';
 let currentPeriod = 'day';
-let moodData = {}; 
+let moodData = {};
 
 async function fetchData() {
   try {
-    const response = await fetch('humeur'); 
+    const response = await fetch('/humeur'); 
     if (!response.ok) throw new Error('Erreur réseau');
     const data = await response.json();
     return data;
@@ -58,6 +58,7 @@ function groupDataByPeriod(userKey, period) {
   return { labels, data };
 }
 
+// 🖌️ Met à jour le graphique
 function updateChart(userKey, period) {
   const { labels, data } = groupDataByPeriod(userKey, period);
   const label = userKey === 'all' ? `Moyenne (${period})` : `Humeur de ${userKey} (${period})`;
@@ -97,6 +98,22 @@ function updateChart(userKey, period) {
   });
 }
 
+function remplirListeUtilisateurs(moodData) {
+  const userFilter = document.getElementById('userFilter');
+
+  while (userFilter.options.length > 1) {
+    userFilter.remove(1);
+  }
+
+  const utilisateurs = Object.keys(moodData);
+  utilisateurs.forEach(userId => {
+    const option = document.createElement('option');
+    option.value = userId;
+    option.textContent = userId.charAt(0).toUpperCase() + userId.slice(1);
+    userFilter.appendChild(option);
+  });
+}
+
 document.getElementById('userFilter').addEventListener('change', e => {
   currentUser = e.target.value;
   updateChart(currentUser, currentPeriod);
@@ -107,10 +124,11 @@ document.getElementById('timeFilter').addEventListener('change', e => {
   updateChart(currentUser, currentPeriod);
 });
 
-// ▶️ Charge les données au lancement
 (async function init() {
   const data = await fetchData();
   if (!data) return;
   moodData = data;
-  updateChart(currentUser, currentPeriod);
+
+  remplirListeUtilisateurs(moodData); 
+  updateChart(currentUser, currentPeriod); 
 })();

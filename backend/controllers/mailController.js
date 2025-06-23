@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const User = require('../models/user');
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const isValidName = (name) => name && name.trim() !== '';
@@ -59,38 +60,41 @@ exports.sendMail = async (req, res) => {
 };
 
 exports.sendRappelleEmail = async (req, res) => {
-    const utilisateurs = [
-        { nom: 'Juan', email: 'guzmanfjd@s2.rpn.ch' },
-        { nom: 'Brayan', email: 'Brayan.deAraujoMota@rpn.ch' },
-        { nom: 'Eliott', email: 'Eliott.Maillard@rpn.ch' }
-    ];    
+    try {
+        const users = await User.find({}, 'name email');
 
-    const objet = "📝 Petit rappel humeur du jour";
-    const message = `C’est l’heure de faire un petit point sur ton humeur ! 😊
+        const objet = "📝 Petit rappel humeur du jour";
+        const message = `C’est l’heure de faire un petit point sur ton humeur ! 😊
 
 Prends 30 secondes pour noter comment tu te sens aujourd’hui dans l’application MoodBoard.
 
 Cela t’aidera à mieux te connaître et à suivre ton bien-être.`;
 
-    let total = utilisateurs.length;
-    let réussis = 0;
-    let échoués = 0;
+        let total = users.length;
+        let réussis = 0;
+        let échoués = 0;
 
-    for (const user of utilisateurs) {
-        const success = await envoyerMailSimple(user.nom, user.email, message, objet);
-        if (success) {
-            réussis++;
-        } else {
-            échoués++;
+        for (const user of users) {
+            const success = await envoyerMailSimple(user.name, user.email, message, objet);
+            if (success) {
+                réussis++;
+            } else {
+                échoués++;
+            }
         }
-    }
 
-    if (échoués === 0) {
-        return res.status(200).json({ message: `✅ Tous les ${total} mails ont été envoyés avec succès.` });
-    } else if (réussis === 0) {
-        return res.status(500).json({ message: `❌ Aucun mail n'a pu être envoyé.` });
-    } else {
-        return res.status(207).json({ message: `⚠️ ${réussis} mail(s) envoyés, ${échoués} échoué(s).` });
+        if (échoués === 0) {
+            return res.status(200).json({ message: `✅ Tous les ${total} mails ont été envoyés avec succès.` });
+        } else if (réussis === 0) {
+            return res.status(500).json({ message: `❌ Aucun mail n'a pu être envoyé.` });
+        } else {
+            return res.status(207).json({ message: `⚠️ ${réussis} mail(s) envoyés, ${échoués} échoué(s).` });
+        }
+
+    } catch (err) {
+        console.error('Erreur lors de l’envoi des mails :', err);
+        return res.status(500).json({ message: "Erreur serveur", error: err.message });
     }
 };
+
 
